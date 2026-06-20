@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoQuest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/homepage.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+</head>
+<body>
+<div class="phone">
+
+  <!-- Logo -->
+  <div class="logo-bar">
+    <img src="assets/logo.png" alt="EcoQuest" />
+  </div>
+
+  <!-- Bio Card -->
+  <div class="card bio-card">
+    <div class="bio-top">
+      <div class="bio-left">
+        <div class="avatar">
+          <!-- Ganti dengan foto profil asli -->
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="16" r="9" fill="#b5bcc4"/>
+            <path d="M6 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#b5bcc4"/>
+          </svg>
+        </div>
+        <div class="bio-info">
+          <div class="bio-name">Leon Kennedy</div>
+          <div class="bio-badge">
+            <i class="ph ph-person bio-badge-icon"></i>
+            <span class="bio-badge-text">Rookie</span>
+          </div>
+        </div>
+      </div>
+      <div class="level-badge">Lv.0</div>
+    </div>
+
+    <!-- EXP Bar -->
+    <div>
+      <div class="exp-row">
+        <span class="exp-label">0 EXP</span>
+        <span class="exp-hint"><strong>10</strong> exp untuk naik level</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <!-- Poin Card -->
+    <div class="stat-card stat-card-left">
+      <div>
+        <div class="stat-title">Poin Minggu Ini</div>
+        <div class="stat-pts">0 pts</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-sub">
+        <span class="stat-sub-label">Poin Terkumpul</span>
+        <span class="stat-sub-val">0</span>
+      </div>
+    </div>
+
+    <!-- Misi Card -->
+    <div class="stat-card stat-card-right">
+      <div class="stat-title">Misi Utama</div>
+      <div class="mission-counts-hp">
+        <span>0 Selesai</span>
+        <div class="dot"></div>
+        <span>0 Belum</span>
+      </div>
+      <div class="mission-steps">
+        <div class="step-circle">1</div>
+        <div class="step-circle">2</div>
+        <div class="step-circle">3</div>
+        <div class="step-circle">4</div>
+        <div class="step-circle">5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner → navigasi ke Misi -->
+  <a class="banner" href="misi.html">
+    <span class="banner-text">Selesaikan 5 misi untuk kumpulkan poin!</span>
+    <i class="ph ph-arrow-right banner-arrow"></i>
+  </a>
+
+  <!-- Rewards Card -->
+  <div class="card rewards-card">
+    <div class="rewards-title">Ada Hadiahnya Lohh!</div>
+    <div class="reward-items">
+
+      <div class="reward-item reward-item-yellow">
+        <div class="reward-bg-circle1"></div>
+        <div class="reward-bg-circle2"></div>
+        <div class="reward-img-wrap"><img src="assets/reward-1.png" alt="Reward 1" /></div>
+        <div class="reward-desc">Kumpulkan poin dan jadilah 3 pemenang tiap bulannya</div>
+      </div>
+
+      <div class="reward-item reward-item-green">
+        <div class="reward-bg-circle1"></div>
+        <div class="reward-bg-circle2"></div>
+        <div class="reward-img-wrap"><img src="assets/reward-2.png" alt="Reward 2" /></div>
+        <div class="reward-desc">Selesaikan misi tiap minggunya dan jadilah pemenang</div>
+      </div>
+
+      <div class="reward-item reward-item-blue">
+        <div class="reward-bg-circle1"></div>
+        <div class="reward-bg-circle2"></div>
+        <div class="reward-img-wrap"><img src="assets/reward-3.png" alt="Reward 3" /></div>
+        <div class="reward-desc">Kumpulkan poin dari sekarang, siapa tau kamu pemenangnya</div>
+      </div>
+
+    </div>
+  </div>
+
+  <button class="cta-btn">
+    <span>Lihat Leaderboard</span>
+    <i class="ph ph-trophy cta-icon"></i>
+  </button>
+
+</div>
+</body>
+</html>
