@@ -220,7 +220,7 @@
       </div>
 
       <!-- Ambil Foto -->
-      <div class="sheet-block">
+      <div class="sheet-block" id="ambilFotoBlock">
         <div class="sheet-block-head">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="6" width="16" height="13" rx="2" stroke="#0a5388" stroke-width="1.5"/>
@@ -229,8 +229,10 @@
           </svg>
           <div class="sheet-block-title">Ambil Foto</div>
         </div>
+
+        <!-- Pilihan upload -->
         <div class="sheet-upload-row">
-          <button class="sheet-upload-btn">
+          <button class="sheet-upload-btn" id="btnGallery" type="button">
             <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="5" y="7" width="22" height="18" rx="2" stroke="#0a5388" stroke-width="1.6"/>
               <circle cx="11.5" cy="13.5" r="2" stroke="#0a5388" stroke-width="1.4"/>
@@ -238,7 +240,7 @@
             </svg>
             <span>Foto Gallery</span>
           </button>
-          <button class="sheet-upload-btn">
+          <button class="sheet-upload-btn" id="btnCamera" type="button">
             <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 11a2 2 0 0 1 2-2h2l1.5-2.5h11L23 9h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V11z" stroke="#0a5388" stroke-width="1.6" stroke-linejoin="round"/>
               <circle cx="16" cy="16.5" r="4" stroke="#0a5388" stroke-width="1.6"/>
@@ -246,20 +248,92 @@
             <span>Foto Kamera</span>
           </button>
         </div>
+
+        <!-- Preview foto berhasil diupload -->
+        <div class="sheet-uploaded" id="uploadedPreview">
+          <div class="uploaded-thumb"><img id="uploadedThumb" src="" alt="Foto" /></div>
+          <div class="uploaded-info">
+            <div class="uploaded-title">Foto Berhasil Diupload</div>
+            <div class="uploaded-name" id="uploadedName">images_action.jpg</div>
+          </div>
+          <button class="uploaded-remove" id="uploadedRemove" type="button" aria-label="Hapus foto">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+
         <div class="sheet-note">
           Size maksimum foto <strong>3MB</strong> dan Pastikan foto terlihat jelas untuk mempermudah verifikasi
         </div>
       </div>
 
     </div>
+
+    <!-- CTA: Submit Foto Misi (muncul setelah upload) -->
+    <div class="sheet-cta" id="sheetCta">
+      <button class="sheet-submit-btn" id="submitFotoBtn" type="button">
+        <span>Submit Foto Misi</span>
+      </button>
+    </div>
+
+    <!-- hidden inputs -->
+    <input type="file" id="inputGallery" accept="image/*" hidden />
+  </div>
+</div>
+
+<!-- ════════ Camera Modal (WebRTC) ════════ -->
+<div class="camera-overlay" id="cameraOverlay">
+  <div class="camera-modal">
+    <div class="camera-header">
+      <div class="camera-title">Ambil Foto</div>
+      <button class="camera-close" id="cameraClose" type="button" aria-label="Tutup kamera">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    <div class="camera-viewfinder">
+      <video id="cameraVideo" autoplay playsinline muted></video>
+      <canvas id="cameraCanvas" hidden></canvas>
+      <!-- corner guides -->
+      <div class="vf-corner tl"></div>
+      <div class="vf-corner tr"></div>
+      <div class="vf-corner bl"></div>
+      <div class="vf-corner br"></div>
+    </div>
+    <div class="camera-hint">Posisikan objek dalam frame lalu tekan tombol shutter</div>
+    <div class="camera-controls">
+      <button class="shutter-btn" id="shutterBtn" type="button" aria-label="Ambil foto">
+        <div class="shutter-ring"></div>
+        <div class="shutter-inner"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ Success Popup ════════ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup" role="dialog" aria-modal="true">
+    <div class="popup-head">
+      <div class="popup-titles">
+        <div class="popup-title">Berhasil Submit</div>
+        <div class="popup-time" id="popupTime">Telah disubmit pada 15 Mei 2026, 10:45 WIB</div>
+      </div>
+      <div class="popup-image"><img id="popupImage" src="" alt="Foto misi" /></div>
+      <div class="popup-desc">Keren! Terima kasih karena sudah melakukan hal baik untuk lingkungan.</div>
+    </div>
+    <button class="popup-btn" id="popupContinue" type="button">
+      <span>Lanjutkan</span>
+    </button>
   </div>
 </div>
 
 <script src="js/dragScroll.js"></script>
 <script src="js/bottomSheet.js"></script>
+<script src="js/camera.js"></script>
+<script src="js/uploadFoto.js"></script>
 <script>
   initDragScroll(document.getElementById('missionScroll'));
   initBottomSheet();
+  initCamera();
+  initUploadFoto();
 </script>
 </body>
 </html>
