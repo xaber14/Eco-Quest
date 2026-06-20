@@ -133,12 +133,19 @@
   gap: var(--gap-md);
   overflow-x: auto;
   width: 100%;
-  padding: 4px 12px 10px;
+  padding: 4px 0 10px;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
 }
 .mission-scroll.is-dragging { cursor: grabbing; }
+/* spacer di awal dan akhir supaya card pertama/terakhir punya margin 24px dari tepi */
+.mission-scroll::before,
+.mission-scroll::after {
+  content: '';
+  flex-shrink: 0;
+  width: 24px;
+}
 .mission-scroll::-webkit-scrollbar { height: 6px; }
 .mission-scroll::-webkit-scrollbar-track {
   background: var(--color-surface);
@@ -267,3 +274,74 @@
   color: var(--color-text-primary);
   letter-spacing: -0.24px; line-height: 1.3;
 }
+
+/* ── Card Misi: state selesai ── */
+.mission-card.is-done {
+  opacity: 0.7;
+  position: relative;
+}
+.mc-done-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+.mc-done-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #16a34a;
+  color: #fff;
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.mc-done-badge i { font-size: 16px; }
+
+/* ── Sheet: done notice ── */
+.sheet-done-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #16a34a;
+  width: 100%;
+  margin-bottom: 4px;
+}
+.sheet-done-notice i { font-size: 18px; }
+
+/* ── Level Up Toast ── */
+.levelup-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(10,83,136,0.35);
+  z-index: 999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 320px;
+  width: calc(100% - 48px);
+}
+.levelup-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+.levelup-toast i { font-size: 28px; flex-shrink: 0; }
+.toast-title { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+.toast-sub   { font-size: 13px; font-weight: 400; opacity: 0.9; }

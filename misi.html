@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/misi.css" />
   <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
   <link rel="stylesheet" href="css/bottomsheet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
 </head>
 <body>
 <div class="phone">
@@ -37,13 +38,13 @@
         <i class="ph ph-clock time-icon"></i>
         Sisa Waktu
       </div>
-      <div class="time-value">40 Jam 30 Menit</div>
+      <div class="time-value" id="sisaWaktuVal">40 Jam 30 Menit</div>
     </div>
     <div class="bar-track">
-      <div class="bar-fill" style="width: 54%;"></div>
+      <div class="bar-fill" id="sisaWaktuBar" style="width:54%"></div>
     </div>
     <div class="time-end">
-      Akan berakhir pada <strong>15 Mei 2026</strong>, pukul <strong>23:59 WIB</strong>
+      <span id="sisaWaktuSub">Akan berakhir pada <strong>15 Mei 2026</strong>, pukul <strong>23:59 WIB</strong></span>
     </div>
   </div>
 
@@ -122,9 +123,9 @@
     </div>
 
     <div class="mission-counts">
-      <span><strong>0</strong> Selesai</span>
+      <span><strong id="misiSelesai">0</strong> Selesai</span>
       <div class="mc-dot"></div>
-      <span><strong>5</strong> Misi Tersisa</span>
+      <span><strong id="misiTersisa">5</strong> Misi Tersisa</span>
     </div>
   </div>
 
@@ -139,7 +140,7 @@
     </div>
     <div class="info-footer">
       <span class="lbl">Estimasi Bonus</span>
-      <span class="val">+20 Pts</span>
+      <span class="val" id="timeBonusVal">+20 Pts</span>
     </div>
   </div>
 
@@ -325,14 +326,17 @@
   </div>
 </div>
 
+<script src="js/state.js"></script>
 <script src="js/dragScroll.js"></script>
 <script src="js/bottomSheet.js"></script>
 <script src="js/camera.js"></script>
+<script src="js/misiPage.js"></script>
 <script src="js/uploadFoto.js"></script>
 <script>
   initDragScroll(document.getElementById('missionScroll'));
   initBottomSheet();
   initCamera();
+  initMisiPage();
   initUploadFoto();
 </script>
 </body>
