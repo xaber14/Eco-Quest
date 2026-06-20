@@ -22,12 +22,17 @@
   <div class="card bio-card">
     <div class="bio-top">
       <div class="bio-left">
-        <div class="avatar">
-          <!-- Ganti dengan foto profil asli -->
-          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="22" cy="16" r="9" fill="#b5bcc4"/>
-            <path d="M6 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#b5bcc4"/>
-          </svg>
+        <div class="avatar-wrap">
+          <div class="avatar" id="hpAvatar">
+            <!-- Ganti dengan foto profil asli -->
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="16" r="9" fill="#b5bcc4"/>
+              <path d="M6 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#b5bcc4"/>
+            </svg>
+          </div>
+          <button class="avatar-edit-btn" id="avatarEditBtn" type="button" aria-label="Ganti foto profil">
+            <i class="ph ph-pencil-simple"></i>
+          </button>
         </div>
         <div class="bio-info">
           <div class="bio-name" id="hpName">Leon Kennedy</div>
@@ -75,12 +80,8 @@
         <div class="dot"></div>
         <span id="hpMisiBelum">0 Belum</span>
       </div>
-      <div class="mission-steps">
-        <div class="step-circle" id="hpStep1">1</div>
-        <div class="step-circle" id="hpStep2">2</div>
-        <div class="step-circle" id="hpStep3">3</div>
-        <div class="step-circle" id="hpStep4">4</div>
-        <div class="step-circle" id="hpStep5">5</div>
+      <div class="mission-steps" id="hpMissionSteps">
+        <!-- Di-render dinamis oleh homepage.js -->
       </div>
     </div>
   </div>
@@ -127,8 +128,38 @@
   </a>
 
 </div>
+<!-- ════════ Crop Modal (foto profil) ════════ -->
+<div class="crop-overlay" id="cropOverlay">
+  <div class="crop-modal">
+    <div class="crop-header">
+      <div class="crop-title">Atur Foto Profil</div>
+      <button class="crop-close" id="cropClose" type="button" aria-label="Tutup">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    <div class="crop-stage" id="cropStage">
+      <img id="cropImage" src="" alt="Crop" />
+      <div class="crop-mask"></div>
+    </div>
+    <div class="crop-controls">
+      <div class="crop-zoom-row">
+        <i class="ph ph-image"></i>
+        <input type="range" class="crop-zoom" id="cropZoom" min="1" max="3" step="0.01" value="1" />
+        <i class="ph ph-image" style="font-size:24px;"></i>
+      </div>
+      <button class="crop-save-btn" id="cropSave" type="button">Simpan Foto</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="avatarInput" accept="image/*" hidden />
+
 <script src="js/state.js"></script>
+<script src="js/avatar.js"></script>
 <script src="js/homepage.js"></script>
-<script>initHomepage();</script>
+<script>
+  initHomepage();
+  initAvatar();
+</script>
 </body>
 </html>

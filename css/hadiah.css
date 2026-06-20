@@ -91,23 +91,25 @@ body.hadiah-page .phone {
   gap: 24px;
   width: 100%;
 }
-/* connector line antara step 1 dan step 2 (1px, setipis border nomor) */
-.steps-container::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 40px;
-  width: 1px;
-  height: calc(100% - 64px);
-  background: var(--color-primary);
-  z-index: 0;
-}
 .step-item {
   display: flex;
   gap: 16px;
   align-items: flex-start;
   position: relative;
   z-index: 1;
+}
+/* garis konektor: dari bawah kotak nomor item ini sampai kotak nomor item berikutnya.
+   Ditempel di setiap .step-item KECUALI yang terakhir.
+   top:40px = bawah kotak nomor; bottom:-24px = menembus gap sampai kotak berikutnya. */
+.step-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  bottom: -24px;
+  width: 1px;
+  background: var(--color-primary);
+  z-index: 0;
 }
 .step-num {
   width: 40px;
@@ -123,6 +125,8 @@ body.hadiah-page .phone {
   color: var(--color-primary);
   flex-shrink: 0;
   letter-spacing: -0.32px;
+  position: relative;
+  z-index: 1;
 }
 .step-body { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
 .step-title {
@@ -200,7 +204,7 @@ body.hadiah-page .phone {
   width: 61px;
   height: 61px;
   border-radius: 10px;
-  background: var(--color-primary-pale);
+  background: transparent;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -208,7 +212,7 @@ body.hadiah-page .phone {
   justify-content: center;
   font-size: 28px;
 }
-.daftar-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.daftar-thumb img { width: 100%; height: 100%; object-fit: contain; }
 .daftar-info { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
 .daftar-name {
   font-size: 14px;

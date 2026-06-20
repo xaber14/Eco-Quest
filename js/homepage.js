@@ -35,16 +35,26 @@ function renderHomepage() {
   document.getElementById('hpMisiSelesai').textContent = stats.done + ' Selesai';
   document.getElementById('hpMisiBelum').textContent   = stats.remaining + ' Belum';
 
-  // ── Step circles ──
-  state.missions.forEach((m, i) => {
-    const el = document.getElementById('hpStep' + (i + 1));
-    if (!el) return;
-    if (m.status === 'done') {
-      el.style.background = 'var(--color-primary)';
-      el.style.color = '#fff';
-    } else {
-      el.style.background = 'var(--color-surface)';
-      el.style.color = 'var(--color-text-primary)';
-    }
-  });
+  // ── Step circles + konektor ──
+  const stepsEl = document.getElementById('hpMissionSteps');
+  if (stepsEl) {
+    const missions = state.missions;
+    stepsEl.innerHTML = missions.map((m, i) => {
+      const isDone = m.status === 'done';
+      // konektor antara step ini dan berikutnya — biru kalau KEDUA misi selesai
+      const nextDone = missions[i + 1] && missions[i + 1].status === 'done';
+      const connectorDone = isDone && nextDone;
+      const connector = i < missions.length - 1
+        ? `<div class="step-connector${connectorDone ? ' done' : ''}"></div>`
+        : '';
+
+      return `
+        <div class="step-item-wrap">
+          <div class="step-circle${isDone ? ' done' : ''}">
+            ${isDone ? '' : `<span class="step-num">${m.id}</span>`}
+          </div>
+          ${connector}
+        </div>`;
+    }).join('');
+  }
 }
