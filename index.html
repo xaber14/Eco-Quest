@@ -127,8 +127,30 @@
     <i class="ph ph-trophy cta-icon"></i>
   </a>
 
+  <!-- Reset Progress -->
+  <button class="reset-progress-btn" id="resetProgressBtn" type="button">
+    <i class="ph ph-arrow-counter-clockwise"></i>
+    <span>Reset Progress</span>
+  </button>
+
 </div>
-<!-- ════════ Crop Modal (foto profil) ════════ -->
+
+<!-- ════════ Reset Confirm Modal ════════ -->
+<div class="reset-overlay" id="resetOverlay">
+  <div class="reset-modal">
+    <div class="reset-icon">
+      <i class="ph ph-warning"></i>
+    </div>
+    <div class="reset-modal-title">Reset Semua Progress?</div>
+    <div class="reset-modal-desc">
+      Semua data akan direset termasuk EXP, level, poin, foto profil, dan status misi. Tindakan ini tidak bisa dibatalkan.
+    </div>
+    <div class="reset-modal-actions">
+      <button class="reset-confirm-btn" id="resetConfirmBtn" type="button">Ya, Reset Sekarang</button>
+      <button class="reset-cancel-btn" id="resetCancelBtn" type="button">Batal</button>
+    </div>
+  </div>
+</div>
 <div class="crop-overlay" id="cropOverlay">
   <div class="crop-modal">
     <div class="crop-header">

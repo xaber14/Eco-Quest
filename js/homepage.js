@@ -4,6 +4,39 @@
 
 function initHomepage() {
   renderHomepage();
+  initResetProgress();
+}
+
+function initResetProgress() {
+  const btn        = document.getElementById('resetProgressBtn');
+  const overlay    = document.getElementById('resetOverlay');
+  const confirmBtn = document.getElementById('resetConfirmBtn');
+  const cancelBtn  = document.getElementById('resetCancelBtn');
+  if (!btn || !overlay) return;
+
+  btn.addEventListener('click', () => {
+    overlay.classList.add('is-open');
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    overlay.classList.remove('is-open');
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('is-open');
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    EQ.reset();
+    overlay.classList.remove('is-open');
+    // render ulang homepage dengan state kosong + animasi singkat
+    setTimeout(() => {
+      renderHomepage();
+      // flash tipis untuk feedback visual
+      document.body.style.opacity = '0.5';
+      setTimeout(() => { document.body.style.opacity = '1'; }, 200);
+    }, 150);
+  });
 }
 
 function renderHomepage() {

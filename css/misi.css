@@ -85,11 +85,34 @@
   letter-spacing: -0.32px; line-height: 1.3;
 }
 .time-label svg, .time-label i { width: 20px; height: 20px; flex-shrink: 0; font-size: 20px; line-height: 1; }
+
+/* countdown: segmen angka + satuan bertumpuk */
 .time-value {
-  font-size: 16px; font-weight: 600;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  white-space: nowrap;
+}
+.cd-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 28px;
+}
+.cd-num {
+  font-size: 20px;
+  font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: -0.32px; line-height: 1.3;
-  text-align: right; white-space: nowrap;
+  letter-spacing: -0.4px;
+  line-height: 1.15;
+}
+.cd-unit {
+  font-size: 10px;
+  font-weight: 400;
+  color: #6b7280;
+  letter-spacing: 0.2px;
+  line-height: 1;
 }
 .time-end { font-size: 12px; color: var(--color-text-secondary); letter-spacing: -0.24px; line-height: 1.3; }
 .time-end strong { font-weight: 600; color: var(--color-text-secondary); }
@@ -277,32 +300,38 @@
 
 /* ── Card Misi: state selesai ── */
 .mission-card.is-done {
-  opacity: 0.7;
   position: relative;
 }
+/* badge Selesai biru, posisi absolut di kanan atas card */
 .mc-done-overlay {
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 12px;
+  right: 12px;
   z-index: 5;
   pointer-events: none;
 }
+.mission-card.is-done {
+  position: relative;
+}
+/* beri ruang di kanan atas: poin digeser ke bawah badge */
+.mission-card.is-done .mc-pts {
+  margin-top: 30px;
+}
 .mc-done-badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: #16a34a;
+  gap: 4px;
+  background: var(--color-primary);
   color: #fff;
   border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 13px;
+  padding: 4px 10px 4px 8px;
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: -0.24px;
+  line-height: 1.3;
+  white-space: nowrap;
 }
-.mc-done-badge i { font-size: 16px; }
+.mc-done-badge i { font-size: 14px; line-height: 1; }
 
 /* ── Sheet: done notice ── */
 .sheet-done-notice {

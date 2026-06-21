@@ -28,24 +28,19 @@ function renderMissionCard(mission) {
   if (!card) return;
 
   const isDone = mission.status === 'done';
+  card.querySelector('.mc-done-overlay')?.remove();
+  card.classList.toggle('is-done', isDone);
 
-  // overlay "Selesai" di atas card
-  let overlay = card.querySelector('.mc-done-overlay');
   if (isDone) {
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'mc-done-overlay';
-      overlay.innerHTML = `
-        <div class="mc-done-badge">
-          <i class="ph ph-check-circle"></i>
-          <span>Selesai</span>
-        </div>`;
-      card.appendChild(overlay);
-    }
-    card.classList.add('is-done');
-  } else {
-    overlay?.remove();
-    card.classList.remove('is-done');
+    // badge "Selesai" biru absolut di kanan atas card
+    const badge = document.createElement('div');
+    badge.className = 'mc-done-overlay';
+    badge.innerHTML = `
+      <div class="mc-done-badge">
+        <i class="ph ph-check-circle"></i>
+        <span>Selesai</span>
+      </div>`;
+    card.appendChild(badge);
   }
 }
 
@@ -60,14 +55,14 @@ function startCountdown() {
     const sub = document.getElementById('sisaWaktuSub');
 
     // Bar: mulai full (100%) lalu mengecil ke kiri seiring waktu habis
-    // pct = waktu terpakai (0→1), jadi sisa = 1 - pct → bar mengecil ke kiri
     const barPct = (1 - pct) * 100;
     if (bar) {
-      bar.style.transition = 'none'; // no smooth — bergerak tepat per detik
+      // transisi linear 1 detik → bar mengalir mulus antar tiap update detik
+      bar.style.transition = 'width 1s linear';
       bar.style.width = barPct + '%';
     }
 
-    if (el) el.textContent = formatCountdownWithSeconds(msLeft);
+    if (el) el.innerHTML = formatCountdownWithSeconds(msLeft);
     if (sub) {
       sub.innerHTML = `Akan berakhir pada <strong>${EQ.formatDate(friday)}</strong>, pukul <strong>23:59 WIB</strong>`;
     }
@@ -97,16 +92,21 @@ function onMissionSubmitted(missionId) {
   if (levelUp) showLevelUpToast(state.user.level);
 }
 
-/* ── Format countdown selalu tampilkan detik ── */
+/* ── Format countdown: angka di atas, satuan di bawah ── */
 function formatCountdownWithSeconds(ms) {
-  if (ms <= 0) return '0 Jam 0 Menit 0 Detik';
-  const totalSec = Math.floor(ms / 1000);
+  const totalSec = Math.max(Math.floor(ms / 1000), 0);
   const hours   = Math.floor(totalSec / 3600);
   const minutes = Math.floor((totalSec % 3600) / 60);
   const seconds = totalSec % 60;
-  if (hours >= 1) return `${hours} Jam ${minutes} Menit ${seconds} Detik`;
-  if (minutes >= 1) return `${minutes} Menit ${seconds} Detik`;
-  return `${seconds} Detik`;
+
+  const seg = (num, unit) => `
+    <span class="cd-seg">
+      <span class="cd-num">${String(num).padStart(2, '0')}</span>
+      <span class="cd-unit">${unit}</span>
+    </span>`;
+
+  // selalu tampilkan jam, menit, detik
+  return seg(hours, 'Jam') + seg(minutes, 'Menit') + seg(seconds, 'Detik');
 }
 
 function updateTimeBonus(state) {
