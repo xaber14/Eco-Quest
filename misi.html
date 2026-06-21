@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/misi.css" />
   <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
   <link rel="stylesheet" href="css/bottomsheet.css" />
@@ -332,12 +333,14 @@
 <script src="js/camera.js"></script>
 <script src="js/misiPage.js"></script>
 <script src="js/uploadFoto.js"></script>
+<script src="js/entrance.js"></script>
 <script>
   initDragScroll(document.getElementById('missionScroll'));
   initBottomSheet();
   initCamera();
   initMisiPage();
   initUploadFoto();
+  initEntrance(['.header', '.time-card', '.mission-section', '.info-card', '.reset-pill']);
 </script>
 </body>
 </html>

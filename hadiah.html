@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/hadiah.css" />
   <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
 </head>
@@ -229,6 +230,10 @@
 </div>
 
 <script src="js/tabs.js"></script>
-<script>initTabs();</script>
+<script src="js/entrance.js"></script>
+<script>
+  initTabs();
+  initEntrance(['.hadiah-header', '.tab-bar', '.tab-panel.active .steps-container', '.tab-panel.active .announcement-box', '.tab-panel.active .daftar-section']);
+</script>
 </body>
 </html>

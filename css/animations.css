@@ -1,0 +1,55 @@
+/* ============================================================
+   EcoQuest — Entrance Animations
+   Komponen muncul dengan fade + slide-up bertahap (staggered)
+   ============================================================ */
+
+@keyframes eq-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes eq-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes eq-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Elemen dengan kelas ini akan dianimasikan saat muncul.
+   Awalnya disembunyikan (opacity 0) lalu di-trigger via JS. */
+.eq-animate {
+  opacity: 0;
+}
+
+.eq-animate.eq-in {
+  animation: eq-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Variasi animasi */
+.eq-animate.eq-fade.eq-in   { animation-name: eq-fade-in; }
+.eq-animate.eq-scale.eq-in  { animation-name: eq-scale-in; }
+
+/* Hormati preferensi user yang tidak suka animasi berlebih */
+@media (prefers-reduced-motion: reduce) {
+  .eq-animate,
+  .eq-animate.eq-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
